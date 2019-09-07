@@ -7,25 +7,18 @@ public class IKManager : Singleton<IKManager>
     private int m_Version = 0;
     public int Version{
         get{
-            if (m_UpdateLead != m_UpdateFollow){
+            if (!Mathf.Approximately(m_UpdateTime, Time.time)){
                 UpdateVersion();
             }
             return m_Version;
         }
     }
-
-    private bool m_UpdateLead = false;
-    private bool m_UpdateFollow = true;
     
     private float m_UpdateTime = 0;
-
-    private void Update(){
-        m_UpdateLead = !m_UpdateLead;
-    }
 
     private void UpdateVersion()
     {
         ++m_Version;
-        m_UpdateFollow = m_UpdateLead;
+        m_UpdateTime = Time.time;
     }
 }

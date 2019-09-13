@@ -7,8 +7,8 @@ public abstract class Block : MonoBehaviour
     [SerializeField] private Block m_Dependency = null;
     public Block Dependency { get { return m_Dependency; } }
     public int Version { get; private set; }
-    public int DepentCount { get; private set; } = 0;
-    private bool m_Linked = false;
+    //public int DepentCount { get; private set; } = 0;
+    //private bool m_Linked = false;
 
     private void LateUpdate()
     {
@@ -37,48 +37,48 @@ public abstract class Block : MonoBehaviour
 
     public abstract void OnState();
 
-    private void Link()
-    {
-        if (!m_Linked)
-        {
-            if (m_Dependency != null)
-            {
-                m_Dependency.DepentCount++;
-            }
-            m_Linked = true;
-        }
-    }
+    //private void Link()
+    //{
+    //    if (!m_Linked)
+    //    {
+    //        if (m_Dependency != null)
+    //        {
+    //            m_Dependency.DepentCount++;
+    //        }
+    //        m_Linked = true;
+    //    }
+    //}
 
-    private void Unlink()
-    {
-        if (m_Linked)
-        {
-            if (m_Dependency != null)
-            {
-                m_Dependency.DepentCount--;
-            }
-            m_Linked = false;
-        }
-    }
+    //private void Unlink()
+    //{
+    //    if (m_Linked)
+    //    {
+    //        if (m_Dependency != null)
+    //        {
+    //            m_Dependency.DepentCount--;
+    //        }
+    //        m_Linked = false;
+    //    }
+    //}
 
-    protected void Awake()
-    {
-        Link();
-    }
+    //protected void Awake()
+    //{
+    //    Link();
+    //}
 
-    private void OnEnable()
-    {
-        Link();   
-    }
+    //private void OnEnable()
+    //{
+    //    Link();   
+    //}
 
-    private void OnDestroy()
-    {
-        Unlink();
-    }
+    //private void OnDestroy()
+    //{
+    //    Unlink();
+    //}
 
-    private void OnDisable()
-    {
-        Unlink();
-    }
+    //private void OnDisable()
+    //{
+    //    Unlink();
+    //}
 
 }

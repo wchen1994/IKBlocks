@@ -12,6 +12,7 @@ public class ForwardBlk : Block, IDesirePosition, IDesireRotation
     Quaternion m_DesireRotation;
 
     [SerializeField] Transform m_Target = null;
+    [SerializeField] bool m_IsSolver = false;
     private IDesirePosition m_TargetDesirePosition;
 
     private void Start()
@@ -66,13 +67,13 @@ public class ForwardBlk : Block, IDesirePosition, IDesireRotation
         }
 
         // ResolveDesire position and rotation chant
-        if (DepentCount == 0)
+        if (m_IsSolver)
         {
             ResolveDesire();
         }
     }
 
-    private void ResolveDesire()
+    protected void ResolveDesire()
     {
         transform.position = m_DesirePosition;
         transform.rotation = m_DesireRotation;

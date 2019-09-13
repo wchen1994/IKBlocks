@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlkIterator : MonoBehaviour
 {
-    [SerializeField] int iteration = 1;
+    [SerializeField] int m_Iteration = 1;
     [SerializeField] Block m_IterateBlock = null;
 
     private void Start()
@@ -17,7 +17,7 @@ public class BlkIterator : MonoBehaviour
 
     private void LateUpdate()
     {
-        for (int i = 1; i < iteration; ++i)
+        for (int i = 1; i < m_Iteration; ++i)
         {
             RecurState(m_IterateBlock);
         }

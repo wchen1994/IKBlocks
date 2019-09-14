@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Block : MonoBehaviour
+public class Block : MonoBehaviour
 {
     [SerializeField] private Block m_Dependency = null;
+    [SerializeField] Block[] m_ExtDependencies = null;
     public Block Dependency { get { return m_Dependency; } }
     public int Version { get; private set; }
     //public int DepentCount { get; private set; } = 0;
@@ -27,6 +28,13 @@ public abstract class Block : MonoBehaviour
         if (m_Dependency != null && m_Dependency.Version != IKManager.Instance.Version)
         {
             m_Dependency.State();
+            if (m_ExtDependencies != null)
+            {
+                for (int i=0; i<m_ExtDependencies.Length; ++i)
+                {
+                    m_ExtDependencies[i].State();
+                }
+            }
         }
 
         // State the block
@@ -35,7 +43,7 @@ public abstract class Block : MonoBehaviour
         Version = IKManager.Instance.Version;
     }
 
-    public abstract void OnState();
+    public virtual void OnState() { }
 
     //private void Link()
     //{
